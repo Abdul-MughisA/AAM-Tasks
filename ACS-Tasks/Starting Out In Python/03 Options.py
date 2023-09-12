@@ -4,6 +4,7 @@ print("[1] Option 1")
 print("[2] Option 2")
 print("[3] Option 3")
 print()
+#Continues to loop while an option is selected.
 while True:
     ans = int(input("Select an option: "))
     print("You have selected option", str(ans) + ".")
