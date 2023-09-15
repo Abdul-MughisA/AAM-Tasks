@@ -13,4 +13,8 @@ modSentence = originalSentence.lower()
 #Remove all spaces from the sentence.
 modSentence = modSentence.replace(" ", "")
 
-#Check thingies for thing.
+#Uses a for loop with range as long as the length of the sentence to add the offset to each character to shift it.
+#If adding the offset makes the ASCII go past the letter z, then just subtract 26 from the ASCII code.
+for change in range(0, len(modSentence)):
+    print(modSentence[0])
+#end for
