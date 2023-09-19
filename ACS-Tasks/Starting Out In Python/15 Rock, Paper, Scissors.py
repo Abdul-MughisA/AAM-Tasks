@@ -8,6 +8,7 @@ print("Thinking...")
 time.sleep(3)
 computer = random.randint(1,3)
 
+#Assigns a letter to a random number.
 if computer == 1:
     computer = "R"
 elif computer == 2:
@@ -21,6 +22,7 @@ else:
 print("The computer got", computer + " and is now determining the outcome.")
 time.sleep(3)
 
+#Determines outcome.
 if computer == playerInput:
     print("You drew! The computer also got", playerInput + ".")
 elif computer == "R" and playerInput == "S":
