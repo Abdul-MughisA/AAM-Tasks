@@ -5,7 +5,7 @@ import time
 
 playerInput = input("Enter R, P or S for Rock, Paper or Scissors: ")
 print("Thinking...")
-time.sleep(3)
+time.sleep(2)
 computer = random.randint(1,3)
 
 #Assigns a letter to a random number.
@@ -20,7 +20,9 @@ else:
 #end if
 
 print("The computer got", computer + " and is now determining the outcome.")
-time.sleep(3)
+
+#Makes the code feel more interactive to add time.sleep()
+time.sleep(2)
 
 #Determines outcome.
 if computer == playerInput:
