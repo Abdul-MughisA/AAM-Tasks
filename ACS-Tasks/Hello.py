@@ -1,18 +1,17 @@
-# This program prints "Hello, World!".
 print("Hello, world!")
 
-year = int(input("Enter a year: "))
-LeapYear = False
-if year % 4 == 0:
-	LeapYear = True
-elif year % 100 == 0:
-	LeapYear = False
+sunshine = 0
+maxHours = 0
+minHours = 100
+totalSunshine = 0
 
-if year % 400 == 0:
-	LeapYear = True
+sunshine = int(input("Input hours of sunshine: "))
+if sunshine > maxHours:
+	maxHours = sunshine
+if sunshine < minHours:
+	minHours = sunshine
+totalSunshine =  totalSunshine + sunshine
 
-if LeapYear == True:
-	print(year, "is a leap year.")
-
-if LeapYear == False:
-	print(year, "is not a leap year.")
+print("Max sunshine hours: ", maxHours)
+print("Min sunshine hours: ", minHours)
+print("Total sunshine hours: ", totalSunshine)
