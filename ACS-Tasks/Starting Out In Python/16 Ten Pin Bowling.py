@@ -6,13 +6,13 @@
 
 #   MEANS
 #       No second bowl (obviously)
-#       Score of the next 2 frames is added onto the final total
+#       Score of the next 2 rolls is added onto the final total
 
 # SPARE:
 #   Comes into action when there is a total of 10 in a frame (but not in 1 hit).
 
 #   MEANS
-#       The score of the next hir (but not the frame) is added to the final total
+#       The score of the next roll is added to the final total
 
 # The final score is all the frames added together (including strike and spare).
 
@@ -47,31 +47,26 @@ for i in range(0,10):
 
 if score[9,0] == 10:
     spare1 = int(input("Enter the score on the spare bowl: "))
+    score[10,0] = spare1
     spare2 = int(input("Enter the score on the spare bowl: "))
+    score[11,0] = spare2
 elif score[9,0] + score[9,1] == 10:
     spare1 = int(input("Enter the score on the spare bowl: "))
+    score[10,0] = spare1
 #end if
 
 for j in range(0,10):
+    final = final + score[j,0] + score[j,1]
+
     # Adds the strike.
     if score[j,0] == 10:
-        plus1 = j + 1
-        plus2 = j + 2
-        final = final + score[plus1,0] + score[plus2,0]
-    #end if
+        final = final + score[(j+1),0] + score[(j+2),0]
 
     #Adds the spare.
-    if (score[j,0] + score[j,1]) == 10 and score[j,0] != 10:
-        plus1 = j + 1
-        final = final + score[plus1,0]
-
+    elif (score[j,0] + score[j,1]) == 10:
+        final = final + score[(j+1),0]
     #end if
 
-    final = final + score[j,0]
-    final = final + score[j,1]
-
 #end for
-
-final = final + spare1 + spare2
 
 print(final)
