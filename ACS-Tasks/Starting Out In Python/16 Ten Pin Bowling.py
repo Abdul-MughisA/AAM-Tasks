@@ -1,22 +1,7 @@
-# There are 10 frames, each with 10 pins.
-# A whole frame cannot exceed a total of 10.
-
-# STRIKE:
-#   Comes into action when you score 10 in 1 hit
-
-#   MEANS
-#       No second bowl (obviously)
-#       Score of the next 2 rolls is added onto the final total
-
-# SPARE:
-#   Comes into action when there is a total of 10 in a frame (but not in 1 hit).
-
-#   MEANS
-#       The score of the next roll is added to the final total
-
-# The final score is all the frames added together (including strike and spare).
-
 print("This is a Ten Pin Bowling score calculator.")
+print("")
+print("[STAGE 1] DATA ENTRY")
+print("")
 score = {}
 final = 0
 spare1 = 0
@@ -37,11 +22,14 @@ for i in range(0,10):
 
     if score[i,0] < 10:
         score[i,1] = int(input("Enter the score on the second bowl: "))
+        print("")
         if score[i,0] + score[i,1] == 10:
             print("Spare!")
+            print("")
         #end if
     else:
         print("Strike!")
+        print("")
     #end if
 #end for
 
@@ -59,8 +47,15 @@ for j in range(0,10):
     final = final + score[j,0] + score[j,1]
 
     # Adds the strike.
+
     if score[j,0] == 10:
-        final = final + score[(j+1),0] + score[(j+2),0]
+        if score[(j+1),1] == 0:
+            final = final + score[(j+1),0] + score[(j+2),0]
+
+        else:
+            final = final + score[(j+1),0] + score[(j+1),1]
+        #end if
+    #end if
 
     #Adds the spare.
     elif (score[j,0] + score[j,1]) == 10:
@@ -69,4 +64,7 @@ for j in range(0,10):
 
 #end for
 
+print("[STAGE 2] SCORING")
+print("")
+print("Well played! Your final score is:")
 print(final)
