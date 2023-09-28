@@ -16,9 +16,9 @@ def displayMenu():
     while valid == False:
         selection = int(input("Enter a valid number: "))
 
-        if selection >=3 and selection <=1:
+        if selection >= 3 and selection <= 1:
             valid = False
-        elif selection <= 3 and selection >=1:
+        elif selection <= 3 and selection >= 1:
             valid = True
         #end if
     #end while

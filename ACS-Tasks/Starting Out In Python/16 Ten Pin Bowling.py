@@ -1,3 +1,13 @@
+# GET USER INPUT
+# VALIDATE USER INPUT
+
+# STRIKE: NEXT 2 ROLLS
+# SPARE: NEXT ROLL
+
+# CALCULATE TOTAL
+
+# REJIG CODE TO BE IN SUBROUTINES
+
 print("This is a Ten Pin Bowling score calculator.")
 print("")
 print("[STAGE 1] DATA ENTRY")
@@ -20,7 +30,14 @@ for a in range(0,12):
 for i in range(0,10):
     score[i,0] = int(input("Enter the score on the first bowl: "))
 
-    if score[i,0] < 10:
+    # VALIDATION
+    if score[i,0] > 10:
+        while score[i,0] < 1 or score[i,0] > 10:
+            print("Try again: ")
+            score[i,0] = int(input("Enter the score on the first bowl: "))
+        #end while
+
+    elif score[i,0] < 10:
         score[i,1] = int(input("Enter the score on the second bowl: "))
         print("")
         if score[i,0] + score[i,1] == 10:
