@@ -45,5 +45,5 @@ while loop == True:
         loop = False
 #end while
 
-print(...)
+print("...")
 print("The program has now been terminated.")
