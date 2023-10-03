@@ -1,5 +1,6 @@
 import pygame
 import time
+import math
  
 """""""""
 Task at hand:
@@ -14,10 +15,9 @@ Task at hand:
 
 """""""""
 
-# Initialize the game engine
 pygame.init()
  
-# Define some colors
+#COLOURS
 
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
@@ -37,13 +37,13 @@ TEAL = (0, 128, 128)
 NAVY = (0, 0, 128)
 
 BROWN = (150, 75, 0)
-
-var_x_rect = 100
-var_y_rect = 100
-var_height_rect = 100
-var_width_rect = 100
  
+#INITIALISATIONS
 PI = 3.141592653
+x_circle = 0
+y_circle = 0.1
+colour_change = 0
+incr = 0.6
  
 size = (800, 600) # Standard 4:3 ratio
 
@@ -63,22 +63,30 @@ while not done:
     # Clear the screen and set the screen background
     screen.fill(NAVY)
 
+    #CHANGING BACKGROUND
+    colour_change += incr
+    if colour_change > 254:
+      incr = -0.6
+    elif colour_change < 1:
+      incr = 0.6
+    screen.fill((0, colour_change, 255))
+
     # pygame.draw.rect(screen, COLOUR, [X_COORD, Y_COORD, WIDTH, HEIGHT], BORDER_THICKNESS)
 
     # HOUSE
     pygame.draw.rect(screen, MAROON, [300, 400, 200, 200], 0)
 
-    #CHIMNEY ******** NOT YET FINISHED *******
+    #CHIMNEY
 
     pygame.draw.rect(screen, MAROON, [425, 300, 40, 80], 0)
 
     #WINDOWS
 
     #WINDOW TOP LEFT
-    pygame.draw.rect(screen, CYAN, [320, 420, 60, 60], 0)
+    pygame.draw.rect(screen, (255-colour_change, 255, colour_change), [320, 420, 60, 60], 0)
 
     #WINDOW TOP RIGHT
-    pygame.draw.rect(screen, CYAN, [420, 420, 60, 60], 0)
+    pygame.draw.rect(screen, (255-colour_change, 255, colour_change), [420, 420, 60, 60], 0)
 
     #DOOR
 
@@ -91,9 +99,13 @@ while not done:
     pygame.draw.polygon(screen, BROWN, [(290, 400), (510, 400), (400, 300)], 0)
 
     #MOVING CIRCLE
+    x_circle += 1
+    if x_circle > 800:
+        x_circle = 0
+    
+    y_circle += 0.1
+    pygame.draw.circle(screen, YELLOW, [x_circle, (300 * math.cos(0.0769*y_circle)+300)], 20)
 
-
- 
     # Font, size, bold, italics
     font = pygame.font.SysFont('Palatino', 20, False, True)
  
@@ -104,13 +116,13 @@ while not done:
     screen.blit(text, [280, 30])
 
     font = pygame.font.SysFont('Palatino', 20, True, True)
-    text = font.render("JUST LIKE THE CHINESE EMPIRE", True, SILVER)
-    screen.blit(text, [250, 60])
+    text = font.render("!! SO AMAZING !!", True, SILVER)
+    screen.blit(text, [320, 60])
  
     # Update screen
     pygame.display.flip()
  
     # 60 updates per second.
-    clock.tick(60)
+    clock.tick(45)
  
 pygame.quit()
