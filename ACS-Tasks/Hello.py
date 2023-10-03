@@ -1,4 +1,4 @@
 while True:
-    input_thing = int(input())
-    print(chr(input_thing))
+    input_thing = input()
+    print(ord(input_thing))
 #end while
