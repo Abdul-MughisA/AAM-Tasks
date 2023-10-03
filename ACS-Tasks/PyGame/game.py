@@ -36,60 +36,81 @@ PURPLE = (128, 0, 128)
 TEAL = (0, 128, 128)
 NAVY = (0, 0, 128)
 
+BROWN = (150, 75, 0)
 
+var_x_rect = 100
+var_y_rect = 100
+var_height_rect = 100
+var_width_rect = 100
  
 PI = 3.141592653
  
-# Set the height and width of the screen
 size = (800, 600) # Standard 4:3 ratio
 
-# Set the size of the screen to be as listed above.
 screen = pygame.display.set_mode(size)
 
 pygame.display.set_caption("Sunrise / Sunset")
  
-# Loop until the user clicks the close button.
 done = False
 clock = pygame.time.Clock()
  
-# Loop as long as done == False
 while not done:
  
-    for event in pygame.event.get():  # User did something
-        if event.type == pygame.QUIT:  # If user clicked close
-            done = True  # Flag that we are done so we exit this loop
- 
-    # All drawing code happens after the for loop and but inside the main while not done loop.
- 
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            done = True
+  
     # Clear the screen and set the screen background
     screen.fill(NAVY)
 
-    # Draw a rectangle
-
     # pygame.draw.rect(screen, COLOUR, [X_COORD, Y_COORD, WIDTH, HEIGHT], BORDER_THICKNESS)
+
     # HOUSE
     pygame.draw.rect(screen, MAROON, [300, 400, 200, 200], 0)
 
-    # WINDOWS
-    pygame.draw.rect(screen, CYAN, [100, 100, 30, 30], 0)
+    #CHIMNEY ******** NOT YET FINISHED *******
+
+    pygame.draw.rect(screen, MAROON, [425, 300, 40, 80], 0)
+
+    #WINDOWS
+
+    #WINDOW TOP LEFT
+    pygame.draw.rect(screen, CYAN, [320, 420, 60, 60], 0)
+
+    #WINDOW TOP RIGHT
+    pygame.draw.rect(screen, CYAN, [420, 420, 60, 60], 0)
+
+    #DOOR
+
+    pygame.draw.rect(screen, BROWN, [375, 540, 50, 60], 0)
+
+    #DOORKNOB
+    pygame.draw.circle(screen, YELLOW, [385, 570], 5)
+
+    #ROOF
+    pygame.draw.polygon(screen, BROWN, [(290, 400), (510, 400), (400, 300)], 0)
+
+    #MOVING CIRCLE
+
+
  
-    # Select the font to use, size, bold, italics
+    # Font, size, bold, italics
     font = pygame.font.SysFont('Palatino', 20, False, True)
  
-    # Render the text. "True" means anti-aliased text.
-    # Black is the color. This creates an image of the
-    # letters, but does not put it on the screen
+    # "True" = anti-aliased.
+    # Creates image only.
 
     text = font.render("Watch the Sun rise and fall!", True, SILVER)
     screen.blit(text, [280, 30])
+
+    font = pygame.font.SysFont('Palatino', 20, True, True)
+    text = font.render("JUST LIKE THE CHINESE EMPIRE", True, SILVER)
+    screen.blit(text, [250, 60])
  
-    # Go ahead and update the screen with what we've drawn.
-    # This MUST happen after all the other drawing commands.
+    # Update screen
     pygame.display.flip()
  
-    # This limits the while loop to a max of 60 times per second.
-    # Leave this out and we will use all CPU we can.
+    # 60 updates per second.
     clock.tick(60)
  
-# Be IDLE friendly
 pygame.quit()
