@@ -74,14 +74,14 @@ while not done:
     pygame.draw.rect(screen, CYAN, [100, 100, 30, 30], 0)
  
     # Select the font to use, size, bold, italics
-    font = pygame.font.SysFont('Palatino', 20, True, True)
+    font = pygame.font.SysFont('Palatino', 20, False, True)
  
     # Render the text. "True" means anti-aliased text.
     # Black is the color. This creates an image of the
     # letters, but does not put it on the screen
 
-    text = font.render("There is no reason why anyone would like PyGame.", True, WHITE)
-    screen.blit(text, [100, 100])
+    text = font.render("Watch the Sun rise and fall!", True, SILVER)
+    screen.blit(text, [280, 30])
  
     # Go ahead and update the screen with what we've drawn.
     # This MUST happen after all the other drawing commands.
