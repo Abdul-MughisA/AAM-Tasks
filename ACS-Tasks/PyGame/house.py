@@ -123,6 +123,6 @@ while not done:
     pygame.display.flip()
  
     # 60 updates per second.
-    clock.tick(45)
+    clock.tick(60)
  
 pygame.quit()
