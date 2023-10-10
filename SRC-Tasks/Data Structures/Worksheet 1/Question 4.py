@@ -1,5 +1,7 @@
 # Same as question 3 but with more outlets.
 
+
+
 total = [0 for _ in range(3)]
 for quarter in range(3):
     for outlet in range(49):
