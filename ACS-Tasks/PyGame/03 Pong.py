@@ -40,6 +40,7 @@ box_x_speed = 0
 box_y_speed = 0
 ball = pygame.Rect(x_coord, y_coord, 50, 50)
 thingy = pygame.Rect(box_x, box_y, 35, 200)
+weird_obs = pygame.Rect(400, 410, 20, 20)
 total = 5
 
 #COLOURS
@@ -61,7 +62,10 @@ PURPLE = (128, 0, 128)
 TEAL = (0, 128, 128)
 NAVY = (0, 0, 128)
 
-fill = OLIVE
+PALEBLUE = (187, 195, 227)
+LIGHTBLUE = (135, 206, 250)
+
+fill = PALEBLUE
 size = (800, 600)
 screen = pygame.display.set_mode(size)
 
@@ -114,9 +118,11 @@ while not done:
     ball = pygame.Rect(x_coord, y_coord, 50, 50)
     thingy = pygame.Rect(box_x, box_y, 35, 200)
 
-    pygame.draw.rect(screen, NAVY, ball, 0)
+    pygame.draw.rect(screen, TEAL, ball, 0)
 
-    pygame.draw.rect(screen, WHITE, thingy, 0)
+    pygame.draw.rect(screen, BLUE, thingy, 0)
+
+    pygame.draw.rect(screen, BLACK, weird_obs, 0)
 
     if ball.colliderect(thingy) or thingy.colliderect(ball):
         y_inc *= -1
@@ -124,19 +130,17 @@ while not done:
         total += 1
 
     font = pygame.font.SysFont('Palatino', 20, False, True)
-    text = font.render("Lives: " + str(total), True, SILVER)
-    screen.blit(text, [280, 30])
+    text = font.render("Lives: " + str(total), True, BLACK)
+    screen.blit(text, [600, 30])
 
     if total == 0:
-        pygame.time.wait(200)
+        pygame.time.wait(100)
         screen.blit(font.render("THE GAME HAS ENDED.", True, SILVER), [400, 30])
-        pygame.time.wait(200)
+        pygame.time.wait(100)
         pygame.quit()
 
-    # Update screen
     pygame.display.flip()
 
-    # 60 updates per second.
     clock.tick(60)
 pygame.quit()
 
