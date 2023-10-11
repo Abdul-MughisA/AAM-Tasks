@@ -2,13 +2,14 @@
 
 import pygame
 import random
+import math
 
 pygame.init()
 
 WHITE = (255, 255, 255)
 NAVY = (0, 0, 128)
 
-size = (1680, 1050)
+size = (800, 600)
 
 screen = pygame.display.set_mode(size)
 
@@ -21,25 +22,31 @@ clock = pygame.time.Clock()
 class Snow(pygame.sprite.Sprite):
 
     #CONSTRUCTORS
-    def __init__(self, s_width, s_length, x, y):
+    def __init__(self, s_width, s_length):
         super().__init__()
-        self.width = s_width
-        self.length = s_length
-        self.x_pos = x
-        self.y_pos = y
 
         self.image= pygame.Surface([s_width, s_length])
         self.image.fill(WHITE)
-        self.speed = 5
-        pygame.draw.rect(self.image, WHITE)
+        self.speed = random.randrange(1,20)
+        self.rect = self.image.get_rect()
+        self.rect.x = random.randrange(0, 800)
+        self.rect.y = random.randrange(0, 600)
+    #end def
+
+    def update(self):
+        if self.rect.y > 600:
+            self.rect.y = -50
+        else:
+            self.rect.y = self.rect.y + self.speed
     #end def
 #end class
 
 #GLOBAL VARIABLES
-snow_list = []
-for i in range(0, 50):
-    flake = Snow(10, 10, random.randint(0, 500), 100)
-    snow_list.__add__(flake)
+snow_group = pygame.sprite.Group()
+number_of_flakes = 10000
+for i in range(0, number_of_flakes):
+    flake = Snow(1, 1)
+    snow_group.add(flake)
 #end for
  
 while not done:
@@ -53,7 +60,8 @@ while not done:
     # Clear the screen and set the screen background
     screen.fill(NAVY)
 
-    snow_list.draw(screen)
+    snow_group.draw(screen)
+    snow_group.update()
 
     pygame.display.flip()
  
