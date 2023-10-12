@@ -4,6 +4,8 @@ import pygame
 import random
 import math
 
+print(math.sin(-90))
+
 pygame.init()
 
 WHITE = (255, 255, 255)
@@ -34,8 +36,15 @@ class Snow(pygame.sprite.Sprite):
     #end def
 
     def update(self):
+        for j in range(-90, 180, 90):
+            self.rect.x += math.sin(j * 4)
+        #end for
         if self.rect.y > 600:
-            self.rect.y = -50
+            self.rect.y -= 600
+        elif self.rect.x < 0:
+            self.rect.x += 800
+        elif self.rect.x > 800:
+            self.rect.x -= 800
         else:
             self.rect.y = self.rect.y + self.speed
     #end def
@@ -43,7 +52,7 @@ class Snow(pygame.sprite.Sprite):
 
 #GLOBAL VARIABLES
 snow_group = pygame.sprite.Group()
-number_of_flakes = 10000
+number_of_flakes = 100
 for i in range(0, number_of_flakes):
     flake = Snow(1, 1)
     snow_group.add(flake)
