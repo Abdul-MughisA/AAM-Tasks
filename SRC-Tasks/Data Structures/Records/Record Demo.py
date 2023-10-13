@@ -10,6 +10,11 @@ class StudentRecord():
     #end def
 #end class
 
+def addone(x):
+    x = x + 1
+    return x
+#end def
+
 student1 = StudentRecord()
 student1.firstname = "Dave"
 student1.lastname = "Bloggs"
@@ -21,6 +26,9 @@ student2.firstname = "Fred"
 student2.lastname = "Smith"
 student2.age = 16
 student2.registered = False
+
+newage = addone(student2.age)
+print(newage)
 
 print(student1.age, student1.lastname)
 print(student1.age)
