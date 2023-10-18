@@ -4,8 +4,6 @@ import pygame
 import random
 import math
 
-print(math.sin(-90))
-
 pygame.init()
 
 WHITE = (255, 255, 255)
