@@ -45,7 +45,7 @@ class Invader(pygame.sprite.Sprite):
     def __init__(self, s_width, s_length):
         super().__init__()
 
-        self.image= pygame.Surface([s_width, s_length])
+        self.image = pygame.Surface([s_width, s_length])
         self.image.fill(COLOUR2)
         self.speed = 1
         self.rect = self.image.get_rect()
@@ -92,6 +92,29 @@ class Player(pygame.sprite.Sprite):
         self.speed = speed
 #end class
 
+class Bullets(pygame.sprite.Sprite):
+    def __init__(self, b_width, b_length):
+        super().__init__()
+
+        self.image = pygame.Surface([b_width, b_length])
+        self.image.fill(COLOUR2)
+        self.speed = -1
+        self.rect = self.image.get_rect()
+        self.rect.x = random.randrange(0, 800)
+        self.rect.y = random.randrange(-50, 0)
+
+    def update(self):
+        if self.rect.y > 600:
+            self.rect.y -= 600
+        elif self.rect.x < 0:
+            self.rect.x += 800
+        elif self.rect.x > 800:
+            self.rect.x -= 800
+        else:
+            self.rect.y = self.rect.y + self.speed
+    #end def
+#end class
+
 sprites = pygame.sprite.Group()
 number_of_invaders = 10
 for i in range(0, number_of_invaders):
@@ -123,6 +146,15 @@ while not done:
 
     sprites.draw(screen)
     sprites.update()
+
+    for bullet in bullet_list:
+
+        block_hit_list = pygame.sprite.spritecollide(player, sprites, True)
+
+        for block in block_hit_list:
+            sprites.remove(block)
+        #end for
+    #end for
 
     pygame.display.flip()
  
