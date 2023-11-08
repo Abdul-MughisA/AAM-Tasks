@@ -50,9 +50,9 @@ class Snow(pygame.sprite.Sprite):
 
 #GLOBAL VARIABLES
 snow_group = pygame.sprite.Group()
-number_of_flakes = 100
+number_of_flakes = 200
 for i in range(0, number_of_flakes):
-    flake = Snow(1, 1)
+    flake = Snow(5, 5)
     snow_group.add(flake)
 #end for
  
