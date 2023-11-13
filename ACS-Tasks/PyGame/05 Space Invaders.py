@@ -23,11 +23,11 @@ PURPLE = (128, 0, 128)
 TEAL = (0, 128, 128)
 NAVY = (0, 0, 128)
 
-COLOUR1 = (168, 165, 204) #DIRTY MAUVE
-COLOUR2 = (97, 93, 153) #DARKER MAUVE
-COLOUR3 = (205, 201, 255) #LIGHTEST COLOUR
-COLOUR4 = (47, 42, 102) #DARKER RICH MAUVE
-COLOUR5 = (13, 11, 51) #DARKEST COLOUR
+COLOUR1 = (168, 165, 204)   #DIRTY MAUVE
+COLOUR2 = (97, 93, 153)     #DARKER MAUVE
+COLOUR3 = (205, 201, 255)   #LIGHTEST COLOUR
+COLOUR4 = (47, 42, 102)     #DARKER RICH MAUVE
+COLOUR5 = (13, 11, 51)      #DARKEST COLOUR
 
 size = (800, 600)
 
@@ -140,6 +140,8 @@ while not done:
         elif event.type == pygame.KEYUP:
             if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
                 player.player_set_speed(0)
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            #INSERT BULLET THING
         #end if
     #end for
   
@@ -151,7 +153,7 @@ while not done:
 
     for bullet in bullet_list:
 
-        block_hit_list = pygame.sprite.spritecollide(player, sprites, True)
+        block_hit_list = pygame.sprite.spritecollide(player, invader, True)
 
         for block in block_hit_list:
             sprites.remove(block)
