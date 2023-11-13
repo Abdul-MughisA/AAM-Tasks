@@ -34,6 +34,8 @@ size = (800, 600)
 screen = pygame.display.set_mode(size)
 
 pygame.display.set_caption("Space Invaders")
+
+bullet_list = pygame.sprite.Group()
  
 done = False
 clock = pygame.time.Clock()
