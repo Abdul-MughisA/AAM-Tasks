@@ -3,6 +3,7 @@
 import pygame
 import random
 import math
+import time
 
 pygame.init()
 
@@ -30,15 +31,11 @@ COLOUR4 = (47, 42, 102)     #DARKER RICH MAUVE
 COLOUR5 = (13, 11, 51)      #DARKEST COLOUR
 
 size = (800, 600)
-
 screen = pygame.display.set_mode(size)
-
-pygame.display.set_caption("Space Invaders")
-
-bullet_list = pygame.sprite.Group()
- 
+pygame.display.set_caption("Space Invaders") 
 done = False
 clock = pygame.time.Clock()
+score = 0
 
 # CLASSES
 class Invader(pygame.sprite.Sprite):
@@ -92,6 +89,13 @@ class Player(pygame.sprite.Sprite):
 
     def player_set_speed(self, speed):
         self.speed = speed
+    #end def
+
+    def kill(self):
+        self.speed = 0
+        self.rect.x = 0
+        self.rect. x = 0
+    #end def
 #end class
 
 class Bullets(pygame.sprite.Sprite):
@@ -102,8 +106,8 @@ class Bullets(pygame.sprite.Sprite):
         self.image.fill(COLOUR2)
         self.speed = -1
         self.rect = self.image.get_rect()
-        self.rect.x = random.randrange(0, 800)
-        self.rect.y = random.randrange(-50, 0)
+        self.rect.x = player.rect.x + 25/2
+        self.rect.y = player.rect.y
 
     def update(self):
         if self.rect.y > 600:
@@ -115,15 +119,22 @@ class Bullets(pygame.sprite.Sprite):
         else:
             self.rect.y = self.rect.y + self.speed
     #end def
+
+    def kill(self):
+        self.speed = 0
+        self.rect.x = 0
+        self.rect. x = 0
+    #end def
 #end class
 
 sprites = pygame.sprite.Group()
+bullets = pygame.sprite.Group()
 number_of_invaders = 10
 for i in range(0, number_of_invaders):
-    invader = Invader(10, 10)
+    invader = Invader(23, 23)
     sprites.add(invader)
 #end for
-player = Player(10, 10)
+player = Player(25, 25)
 sprites.add(player)
 
  
@@ -141,7 +152,8 @@ while not done:
             if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
                 player.player_set_speed(0)
         if event.type == pygame.MOUSEBUTTONDOWN:
-            #INSERT BULLET THING
+            myBullet = Bullets(10, 10)
+            bullets.add(myBullet)
         #end if
     #end for
   
@@ -149,20 +161,16 @@ while not done:
     screen.fill(COLOUR3)
 
     sprites.draw(screen)
+    bullets.draw(screen)
     sprites.update()
+    bullets.update()
 
-    for bullet in bullet_list:
-
-        block_hit_list = pygame.sprite.spritecollide(player, invader, True)
-
-        for block in block_hit_list:
-            sprites.remove(block)
-        #end for
-    #end for
-
+    hit = pygame.sprite.spritecollide(invader, bullets, True)
+    for block in hit:
+        print("HIT")
+        score += 1
     pygame.display.flip()
  
-    # 60 updates per second.
     clock.tick(60)
 #end while
  
