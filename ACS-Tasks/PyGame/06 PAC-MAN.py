@@ -42,13 +42,26 @@ class Block(pygame.sprite.Sprite):
 #end class
 
 class Player(pygame.sprite.Sprite):
-    def __init__(self):
+    def __init__(self, plX, plY):
         super().__init__()
-        self.image = pygame.Surface([40, 40])
-        self.image.fill(YELLOW)
-        # NOW NEED TO DRAW A MOVING CIRCLE #
-    def update(self):
+        self.image = pygame.Surface([20, 20])
+        self.rect = self.image.get_rect()
+        self.rect.x = plX
+        self.rect.y = plY
+        self.speedX = 0
+        self.speedY = 0
+        self.radius = 10
+    #end def
 
+    def update(self):
+        pygame.draw.circle(screen, YELLOW, (self.rect.x + 10, self.rect.y + 10), self.radius)
+        self.rect.x += self.speedX
+        self.rect.y += self.speedY
+    #end def
+
+    def setSpeed(self, spX, spY):
+        self.speedX = spX
+        self.speedY = spY
 #end class
 
 walls = pygame.sprite.Group()
@@ -70,13 +83,23 @@ for _ in range(1, 29):
     walls.add(wallBlock)
 #end for
 
-player = Player()
+player = Player(400-10, 300-10)
+players.add(player)
 
 while not done:
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             done = True
+        elif event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_LEFT:
+                player.setSpeed(-1, 0)
+            elif event.key == pygame.K_RIGHT:
+                player.setSpeed(1, 0)
+            elif event.key == pygame.K_UP:
+                player.setSpeed(0, -1)
+            elif event.key == pygame.K_DOWN:
+                player.setSpeed(0, 1)
         #end if
     #end for
 
@@ -84,6 +107,12 @@ while not done:
 
     walls.draw(screen)
     players.draw(screen)
+    players.update()
+
+    for allthewalls in walls:
+        hit = pygame.sprite.spritecollide(allthewalls, players, True)
+        print("YOU DIED")
+    #end for
 
     pygame.display.flip()
 
