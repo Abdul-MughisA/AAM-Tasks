@@ -62,6 +62,19 @@ class Player(pygame.sprite.Sprite):
     def setSpeed(self, spX, spY):
         self.speedX = spX
         self.speedY = spY
+    
+    def setLoc(self, locX, locY):
+        self.rect.x = locX
+        self.rect.y = locY
+    #end def
+
+    def getLocX(self):
+        return self.rect.x
+    #end def
+
+    def getLocY(self):
+        return self.rect.y
+    #end def
 #end class
 
 walls = pygame.sprite.Group()
@@ -109,10 +122,24 @@ while not done:
     players.draw(screen)
     players.update()
 
+
     for allthewalls in walls:
         hit = pygame.sprite.spritecollide(allthewalls, players, True)
-        print("YOU DIED")
+        print(hit)
     #end for
+    # if not hit:
+    #     print("1")
+
+    # else:
+    #     print("2")
+    #     bounceBackX = player.getLocX()
+    #     bounceBackY = player.getLocY()
+    # #end if
+
+    # Trying to set the sprite to revert back to original location when it hits a wall.
+    # At the moment, it is possible to inch through a wall.
+    # Trying to find a way that collision returns a Boolean so can do stuff.
+    # Spritecollide returns a Sprite group?
 
     pygame.display.flip()
 
