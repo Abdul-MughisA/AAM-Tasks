@@ -5,7 +5,6 @@ done = False
 i = 0
 
 def merge(left, right, new):
-    global i
     leftindex, rightindex, newindex = 0, 0, 0
     while leftindex < len(left) and rightindex < len(right):
         if left[leftindex] < right[rightindex]:
