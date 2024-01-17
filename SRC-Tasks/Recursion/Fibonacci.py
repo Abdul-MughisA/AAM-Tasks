@@ -1,5 +1,6 @@
 dict = {}
 
+# RECURSIVE #
 def fibRec(n):
     if n <= 1:
         return n
@@ -8,6 +9,7 @@ def fibRec(n):
     #end if
 #end def
 
+# RECURSIVE WITH DYNAMIC PROGRAMMING #
 def fibDyn(n):
     global dict
     if n <= 1:
@@ -18,9 +20,9 @@ def fibDyn(n):
         dict[n] = fibDyn(n-1) + fibDyn(n-2)
         return fibDyn(n-1) + fibDyn(n-2)
     #end if
-
 #end def
 
+# ITERATIVE #
 def fibIt(n):
     index = 2
     nums = [0, 1]
