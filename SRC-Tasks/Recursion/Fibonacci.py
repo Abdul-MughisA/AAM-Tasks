@@ -34,3 +34,4 @@ def fibIt(n):
 #end def
 
 print(fibDyn(32))
+print(dict)
