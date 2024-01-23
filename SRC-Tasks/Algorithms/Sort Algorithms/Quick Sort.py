@@ -1,22 +1,25 @@
-def swap(arr,a,b):
+def swap(arr, a, b):
     temp = arr[a]
     arr[a] = arr[b]
     arr[b] = temp
-#end procedure
+#end def
 
-def quickPass(arr):
-    pivot =len(arr) -1
-    ptr = 0
+def quickSplit(arr, ptr, pivot):
     direction = 1
     while ptr != pivot:
-        if arr[ptr] < arr[pivot]:
-            ptr += direction
-        else:
-            swap(arr,ptr,pivot)
-            pivot,ptr = ptr,pivot
-            direction = direction * -1
+        if direction == 1 and (arr[ptr] > arr[pivot]):
+            pass
         #end if
     #end while
 #end procedure
 
+def quickSort():
+    pass
+#end def
+
 data = ["A","F","G","B","E","C","H","D"]
+
+#####################
+## CODE INCOMPLETE ##
+## COPY FROM TEAMS ##
+#####################
